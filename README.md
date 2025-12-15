@@ -1,4 +1,5 @@
 # Simon dice – Docker Compose
+<img width="846" height="615" alt="image" src="https://github.com/user-attachments/assets/c9add0ad-ef09-414f-b968-7e25348c09c7" />
 
 La aplicación implementa el juego clásico **Simon Dice**, distribuido en tres contenedores independientes
 - Frontend (nginx,html)
@@ -32,9 +33,9 @@ POSTGRES_DB=simon
 POSTGRES_USER=simonuser
 POSTGRES_PASSWORD=simondbpass
 ```
-2. Levantar
+2. Levantar, donde hayas dejado el archivo, acordate de generar un archivo .env 
 ```
-docker compose up -d
+docker compose up -d --build
 ```
 3. Acceder y jugar :D
 http://localhost:8080
