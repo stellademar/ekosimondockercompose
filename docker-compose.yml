@@ -1,0 +1,48 @@
+services:
+  db:
+    image: mrelexay/eko-db:1.0.0
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks:
+      - ekopary_network
+
+  apilayer:
+    image: mrelexay/eko-apilayer:1.0.0
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: ${POSTGRES_DB}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      MAX_LEVEL: "10"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - ekopary_network
+
+  frontend:
+    image: mrelexay/eko-frontend:1.0.0
+    ports:
+      - "8080:80"
+    depends_on:
+      - apilayer
+    networks:
+      - ekopary_network
+
+volumes:
+  dbdata:
+
+networks:
+  ekopary_network:
+    driver: bridge
+
