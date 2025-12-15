@@ -25,15 +25,16 @@ La aplicación implementa el juego clásico **Simon Dice**, distribuido en tres 
 - Almacena partidas e intentos.
 ---
  ### Pasos
+0. Descarga este repo o copia el contenido de docker-compose.yml
 
-1. Crear un archivo `.env` con las siguientes variables:
+1. Crear un archivo `.env` con las siguientes variables, donde este ubicado tu docker-compose.yml
 
 ```env
 POSTGRES_DB=simon
 POSTGRES_USER=simonuser
 POSTGRES_PASSWORD=simondbpass
 ```
-2. Levantar, donde hayas dejado el archivo, acordate de generar un archivo .env 
+2. Posicionate donde tengas el archivo docker-compose.yml, acordate de generar un archivo .env del paso 1.
 ```
 docker compose up -d --build
 ```
