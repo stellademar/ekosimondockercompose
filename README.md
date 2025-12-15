@@ -33,7 +33,8 @@ POSTGRES_USER=simonuser
 POSTGRES_PASSWORD=simondbpass
 ```
 2. Levantar
-```docker compose up -d
+```
+docker compose up -d
 ```
 3. Acceder y jugar :D
 http://localhost:8080
